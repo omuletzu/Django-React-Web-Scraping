@@ -7,6 +7,7 @@ import "../styles/Form.css"
 function Form({ route, method }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const name = method === "login" ? "Login" : "Register"
@@ -24,6 +25,7 @@ function Form({ route, method }) {
                 navigate("/")
             } else {
                 console.log("Registered, redirecting to login page")
+                console.log(res)
                 navigate("/login")
             }
         } catch (error) {
@@ -43,6 +45,15 @@ function Form({ route, method }) {
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder='Username'
             />
+            {method === "register" && (
+                <input
+                    className='form-input'
+                    type='text'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder='Email'
+                />
+            )}
             <input
                 className='form-input'
                 type='password'
