@@ -19,13 +19,10 @@ function Form({ route, method }) {
         try {
             const res = await api.post(route, { username, password })
             if (method === "login") {
-                console.log("Logged in, redirecting to home page")
-                localStorage.setItem(ACCESS_TOKEN, res.data.acces);
+                localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
                 navigate("/")
             } else {
-                console.log("Registered, redirecting to login page")
-                console.log(res)
                 navigate("/login")
             }
         } catch (error) {
