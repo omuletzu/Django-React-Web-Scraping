@@ -8,6 +8,7 @@ function Form({ route, method }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
+    // TODO: Implement loading state
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const name = method === "login" ? "Login" : "Register"

@@ -8,3 +8,9 @@ pytz
 sqlparse
 psycopg2-binary
 python-dotenv
+langchain 
+langchain_ollama
+selenium
+beautifulsoup4
+lxml 
+html5lib
