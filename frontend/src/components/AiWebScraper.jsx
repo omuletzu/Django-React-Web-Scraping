@@ -9,7 +9,7 @@ import { IoMdSettings } from "react-icons/io";
 import { IoCloseOutline } from "react-icons/io5";
 import HistoryPanel from "./HistoryPanel";
 import SettingsPanel from "./SettingsPanel";
-import { Dialog, Transition } from "@headlessui/react";
+import { Transition } from "@headlessui/react";
 import AutosizeTextarea from "react-autosize-textarea";
 import "../output.css";
 
@@ -27,7 +27,7 @@ const AiWebScraper = () => {
   const [isUserPaneOpen, setIsUserPaneOpen] = useState(false);
 
   let buttonsDivHeight = "10vh";
-
+  
   useEffect(() => {
     window.scrollTo({
       top: document.documentElement.scrollHeight,
@@ -38,7 +38,7 @@ const AiWebScraper = () => {
   const handleScrape = async (e) => {
     e.preventDefault();
     setLoadingScrap(true);
-
+    console.log(localStorage.getItem(ACCESS_TOKEN))
     try {
       const res = await api.post("/api/scrape/", { url });
       setDomContent(res.data.dom_content_cleaned);
@@ -358,7 +358,7 @@ const AiWebScraper = () => {
             setIsUserPaneOpen(!isUserPaneOpen);
           }}
         >
-          Username
+          {localStorage.getItem("current_username")}
         </button>
 
         <button
