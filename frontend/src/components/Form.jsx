@@ -11,12 +11,12 @@ function Form({ route, method }) {
     // TODO: Implement loading state
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
-    const name = method === "login" ? "Login" : "Register"
-
+    const name = (method === "login") ? "Login" : "Register"
+    
     const handleSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
-
+     
         try {
             const res = await api.post(route, { username, password })
             if (method === "login") {
