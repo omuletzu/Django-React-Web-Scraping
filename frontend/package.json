@@ -10,7 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@headlessui/react": "^2.2.0",
+    "@mui/material": "^6.1.6",
+    "@react-navigation/native": "github:react-navigation/native",
     "axios": "^1.7.7",
     "jwt-decode": "^4.0.0",
     "postcss-cli": "^11.0.0",

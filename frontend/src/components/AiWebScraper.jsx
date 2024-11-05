@@ -274,7 +274,7 @@ const AiWebScraper = () => {
           </button>
 
           <h1 className="text-3xl" style={{ textAlign: "center" }}>
-            Your history
+            Search history
           </h1>
 
           <HistoryPanel presetValues={presetValues} />
@@ -306,7 +306,7 @@ const AiWebScraper = () => {
           </button>
 
           <h1 className="text-3xl" style={{ textAlign: "center" }}>
-            Your history
+            Settings
           </h1>
 
           <SettingsPanel />
