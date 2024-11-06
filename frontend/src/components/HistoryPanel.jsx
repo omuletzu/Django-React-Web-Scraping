@@ -47,7 +47,7 @@ const HistoryPanel = ({ presetValues }) => {
           width: "40vw",
           borderRadius: "20px",
           padding: "0.5vw",
-          backgroundColor: "#f9f9f9",
+          backgroundColor: "#f5f5f5",
           textAlign: "center",
         }}
         type="text"

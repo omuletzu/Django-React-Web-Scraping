@@ -22,6 +22,7 @@ class ScrapeWebsiteView(APIView):
 
     def post(self, request, *args, **kwargs):
         website_url = request.data.get("url")
+       
         if not website_url:
             return Response({"error": "URL is required"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -71,11 +72,13 @@ class RetreiveNotes(APIView):
         user_id = self.request.user.id
 
         try:
-            print(search_url.strip() == "")
             if user_id and search_url and search_url.strip() != "":
                 queryset = Note.objects.filter(user_id=user_id, url__contains=search_url)
             else:
-                queryset = Note.objects.all()
+                if user_id:
+                    queryset = Note.objects.filter(user_id=user_id)
+                else:
+                    queryset = None
 
             serializer = NoteSerializer(queryset, many=True)
             return Response(serializer.data)

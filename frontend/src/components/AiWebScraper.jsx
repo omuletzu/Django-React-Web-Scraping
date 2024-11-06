@@ -45,7 +45,7 @@ const AiWebScraper = () => {
   const handleScrape = async (e) => {
     e.preventDefault();
     setLoadingScrap(true);
-    console.log(localStorage.getItem(ACCESS_TOKEN));
+
     try {
       const res = await api.post("/api/scrape/", { url });
       setDomContent(res.data.dom_content_cleaned);
@@ -116,7 +116,7 @@ const AiWebScraper = () => {
         <div className="scrollable" style={{ textAlign: "center" }}>
           <label style={{ padding: "10vh" }}>Enter Website URL:</label>
           <input
-            style={{ width: "50vw", borderRadius: "20px", padding: "0.5vw" }}
+            style={{ width: "50vw", borderRadius: "20px", padding: "0.5vw", backgroundColor: "#f5f5f5" }}
             type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
