@@ -25,9 +25,16 @@ const AiWebScraper = () => {
   const [isHistoryPaneOpen, setIsHistoryPaneOpen] = useState(false);
   const [isSettingsPaneOpen, setIsSettingsPaneOpen] = useState(false);
   const [isUserPaneOpen, setIsUserPaneOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  })
 
   let buttonsDivHeight = "10vh";
-  
+
+  useEffect(() => {
+    setTheme(localStorage.getItem("theme"));
+  }, []);
+
   useEffect(() => {
     window.scrollTo({
       top: document.documentElement.scrollHeight,
@@ -38,7 +45,7 @@ const AiWebScraper = () => {
   const handleScrape = async (e) => {
     e.preventDefault();
     setLoadingScrap(true);
-    console.log(localStorage.getItem(ACCESS_TOKEN))
+    console.log(localStorage.getItem(ACCESS_TOKEN));
     try {
       const res = await api.post("/api/scrape/", { url });
       setDomContent(res.data.dom_content_cleaned);
@@ -77,14 +84,16 @@ const AiWebScraper = () => {
   };
 
   const presetValues = async (note) => {
-    setIsHistoryPaneOpen(false)
-    setUrl(note.url)
-    setLastScrappedUrl(note.url)
-    setParseDescription(note.prompt)
+    setIsHistoryPaneOpen(false);
+    setUrl(note.url);
+    setLastScrappedUrl(note.url);
+    setParseDescription(note.prompt);
 
-    const res = await api.post("/api/get_dom_content/", { search_url : note.url });
-    setDomContent(res.data.result)
-  }
+    const res = await api.post("/api/get_dom_content/", {
+      search_url: note.url,
+    });
+    setDomContent(res.data.result);
+  };
 
   return (
     <div
@@ -94,7 +103,6 @@ const AiWebScraper = () => {
         flexDirection: "column",
         height: "100vh",
         boxSizing: "border-box",
-        backgroundColor: "#f9f9f9",
       }}
     >
       <div style={{ flex: "1" }}>
@@ -238,7 +246,15 @@ const AiWebScraper = () => {
         )}
 
         {parsedResult && (
-          <div style={{ margin: "20vh", fontWeight: "bold", borderWidth: "1px", borderRadius: "10px", padding: "1.5vh" }}>
+          <div
+            style={{
+              margin: "20vh",
+              fontWeight: "bold",
+              borderWidth: "1px",
+              borderRadius: "10px",
+              padding: "1.5vh",
+            }}
+          >
             <h2>Parsed Result</h2>
             {
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
@@ -291,7 +307,7 @@ const AiWebScraper = () => {
         leaveTo="translate-x-full opacity-0"
       >
         <div
-          className="fixed top-0 right-0 h-full w-semi bg-opacity-95 shadow-lg p-4 z-10"
+          className="fixed top-0 right-0 h-full w-semi-semi bg-opacity-95 shadow-lg p-4 z-10"
           style={{
             height: `calc(100vh - ${buttonsDivHeight})`,
             justifyItems: "center",

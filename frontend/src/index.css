@@ -5,12 +5,23 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #202020;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --background-color: #f9f9f9;
+  --text-color: #213547;
+  --placeholder-color: #9ca3b2;
+  --input-background-color: #ffffff;
+  --button-color: #f1f1f1;
+  --panel-background-color: rgba(255, 255, 255, 0.95)
+}
+
+[data-theme="dark"] {
+  filter: invert(80%);
+  color: black;
 }
 
 a {

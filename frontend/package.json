@@ -17,6 +17,7 @@
     "@react-navigation/native": "github:react-navigation/native",
     "axios": "^1.7.7",
     "jwt-decode": "^4.0.0",
+    "next-themes": "^0.4.3",
     "postcss-cli": "^11.0.0",
     "react": "^18.3.1",
     "react-autosize-textarea": "^7.1.0",

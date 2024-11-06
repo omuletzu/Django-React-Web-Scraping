@@ -1177,6 +1177,10 @@ video {
   width: 50%;
 }
 
+.w-semi-semi {
+  width: 25%;
+}
+
 .bg-white {
   background-color: rgb(255 255 255);
 }
