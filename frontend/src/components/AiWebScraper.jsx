@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import api from "../api";
-import { ClimbingBoxLoader } from "react-spinners";
 import ReactMarkdown from "react-markdown";
+import { ClimbingBoxLoader } from "react-spinners";
 import remarkGfm from "remark-gfm";
 import { FaHistory } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
@@ -10,7 +10,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import HistoryPanel from "./HistoryPanel";
 import SettingsPanel from "./SettingsPanel";
 import { Transition } from "@headlessui/react";
-import AutosizeTextarea from "react-autosize-textarea";
+import AutosizeTextarea from "react-textarea-autosize";
 import "../output.css";
 
 const AiWebScraper = () => {
