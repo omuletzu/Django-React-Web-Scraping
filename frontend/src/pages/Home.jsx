@@ -3,9 +3,7 @@ import AiWebScraper from '../components/AiWebScraper';
 
 function Home() {
   return (
-    <div>
-      <AiWebScraper />
-    </div>
+    <AiWebScraper />
   );
 }
 
