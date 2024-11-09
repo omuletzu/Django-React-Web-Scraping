@@ -1,0 +1,25 @@
+.panel {
+    background-color: var(--background-color);
+}
+
+.light-button {
+    flex: 1;
+    margin: 20;
+    color: black;
+    background-color: #eeb18e;
+}
+
+.light-button:hover {
+    background-color: #a87f6b;
+}
+
+.dark-button {
+    flex: 1;
+    margin: 2.1vw;
+    color: #b2aeac;
+    background-color: #983d00;
+}
+
+.dark-button:hover {
+    background-color: #bd4b00;
+}
