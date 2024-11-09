@@ -11,7 +11,8 @@ import HistoryPanel from "./HistoryPanel";
 import SettingsPanel from "./SettingsPanel";
 import { Transition } from "@headlessui/react";
 import AutosizeTextarea from "react-textarea-autosize";
-import "../output.css";
+import "../styles/output.css";
+import "../styles/AiWebScraper.css"
 
 const AiWebScraper = () => {
   const [url, setUrl] = useState("");
@@ -26,14 +27,20 @@ const AiWebScraper = () => {
   const [isSettingsPaneOpen, setIsSettingsPaneOpen] = useState(false);
   const [isUserPaneOpen, setIsUserPaneOpen] = useState(false);
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+    return localStorage.getItem("theme") || "light"
   })
 
   let buttonsDivHeight = "10vh";
 
   useEffect(() => {
     setTheme(localStorage.getItem("theme"));
+    document.documentElement.classList.toggle("dark", theme === "dark");
   }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     window.scrollTo({
@@ -52,8 +59,8 @@ const AiWebScraper = () => {
     } catch (error) {
       alert(
         "Error scraping the website: " +
-          error +
-          " Maybe the website is not accessible or the URL is invalid."
+        error +
+        " Maybe the website is not accessible or the URL is invalid."
       );
     } finally {
       setLoadingScrap(false);
@@ -96,18 +103,10 @@ const AiWebScraper = () => {
   };
 
   return (
-    <div
-      className="no-scroll"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100vh",
-        boxSizing: "border-box",
-      }}
-    >
+    <div className="no-scroll home-container">
       <div style={{ flex: "1" }}>
         <h1
-          className="text-3xl font-bold underline text-blue-600"
+          className="text-3xl font-bold underline"
           style={{ textAlign: "center", padding: "10vh" }}
         >
           AI Web Scraper
@@ -115,8 +114,7 @@ const AiWebScraper = () => {
 
         <div className="scrollable" style={{ textAlign: "center" }}>
           <label style={{ padding: "10vh" }}>Enter Website URL:</label>
-          <input
-            style={{ width: "50vw", borderRadius: "20px", padding: "0.5vw", backgroundColor: "#f5f5f5" }}
+          <input className="home-input"
             type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
@@ -141,11 +139,10 @@ const AiWebScraper = () => {
                 <ClimbingBoxLoader color="#eb761c" size={9}></ClimbingBoxLoader>
               )}
 
-              <button
+              <button className="home-buttons"
                 style={{
                   margin: "4vh",
                   padding: "2vh",
-                  backgroundColor: "#f1f1f1",
                 }}
                 onClick={handleScrape}
                 disabled={loadingParse || loadingScrap}
@@ -155,13 +152,12 @@ const AiWebScraper = () => {
             </div>
 
             {domContent && (
-              <button
+              <button className="home-buttons"
                 style={{
                   margin: "4vh",
                   padding: "2vh",
                   borderColor: domContentVisible ? "#eb761c" : "#f9f9f9",
                   outline: "none",
-                  backgroundColor: "#f1f1f1",
                 }}
                 onClick={toggleDomContentVisible}
               >
@@ -181,7 +177,7 @@ const AiWebScraper = () => {
             }}
           >
             <h2 style={{ margin: "1vh" }}>View DOM Content</h2>
-            <textarea
+            <textarea className="home-textarea"
               readOnly
               value={domContent}
               rows="10"
@@ -207,7 +203,7 @@ const AiWebScraper = () => {
             <label style={{ margin: "1vh" }}>
               Describe what you want to parse:
             </label>
-            <AutosizeTextarea
+            <AutosizeTextarea className="home-textarea"
               value={parseDescription}
               onChange={(e) => setParseDescription(e.target.value)}
               placeholder="Your description"
@@ -226,11 +222,10 @@ const AiWebScraper = () => {
                 alignItems: "center",
               }}
             >
-              <button
+              <button className="home-buttons"
                 style={{
                   margin: "2vh",
                   padding: "2vh",
-                  backgroundColor: "#f1f1f1",
                 }}
                 onClick={handleParse}
                 disabled={loadingParse || loadingScrap}
@@ -275,16 +270,18 @@ const AiWebScraper = () => {
         leaveTo="-translate-x-full opacity-0"
       >
         <div
-          className="fixed top-0 left-0 h-full w-semi bg-opacity-95 shadow-lg p-4 z-10"
+          className="fixed top-0 left-0 h-full w-semi shadow-lg p-4 z-10 panels"
           style={{
             height: `calc(100vh - ${buttonsDivHeight})`,
             justifyItems: "center",
           }}
         >
           <button
-            className="fixed top-4 left-4"
+            className="top-4 left-4 panels-button"
             onClick={() => setIsHistoryPaneOpen(false)}
-            style={{ backgroundColor: "white" }}
+            // style={{ 
+            //   backgroundColor: "white" 
+            // }}
           >
             <IoCloseOutline />
           </button>
@@ -307,16 +304,16 @@ const AiWebScraper = () => {
         leaveTo="translate-x-full opacity-0"
       >
         <div
-          className="fixed top-0 right-0 h-full w-semi-semi bg-opacity-95 shadow-lg p-4 z-10"
+          className="fixed top-0 right-0 h-full w-semi-semi shadow-lg p-4 z-10 panels"
           style={{
             height: `calc(100vh - ${buttonsDivHeight})`,
             justifyItems: "center",
           }}
         >
           <button
-            className="fixed top-4 right-4"
+            className="fixed top-4 right-4 panels-button"
             onClick={() => setIsSettingsPaneOpen(false)}
-            style={{ backgroundColor: "white" }}
+            // style={{ backgroundColor: "white" }}
           >
             <IoCloseOutline />
           </button>
@@ -329,7 +326,7 @@ const AiWebScraper = () => {
         </div>
       </Transition>
 
-      <div
+      <div className="footer-div"
         style={{
           position: "fixed",
           bottom: 0,
@@ -337,18 +334,17 @@ const AiWebScraper = () => {
           right: 0,
           display: "flex",
           justifyContent: "space-between",
-          backgroundColor: "#f1f1f1",
           height: buttonsDivHeight,
           zIndex: "10",
         }}
       >
-        <button
+        <button className="home-buttons footer-buttons"
           style={{
             margin: "1vw",
             flex: "1",
             justifyContent: "center",
             display: "flex",
-            backgroundColor: "#f1f1f1",
+            // backgroundColor: "#f1f1f1",
           }}
           onClick={() => {
             setIsHistoryPaneOpen(!isHistoryPaneOpen);
@@ -360,13 +356,13 @@ const AiWebScraper = () => {
           History
         </button>
 
-        <button
+        <button className="home-buttons footer-buttons"
           style={{
             margin: "1vw",
             flex: "1",
             justifyContent: "center",
             display: "flex",
-            backgroundColor: "#f1f1f1",
+            // backgroundColor: "#f1f1f1",
           }}
           onClick={() => {
             setIsHistoryPaneOpen(false);
@@ -377,13 +373,13 @@ const AiWebScraper = () => {
           {localStorage.getItem("current_username")}
         </button>
 
-        <button
+        <button className="home-buttons footer-buttons"
           style={{
             margin: "1vw",
             flex: "1",
             justifyContent: "center",
             display: "flex",
-            backgroundColor: "#f1f1f1",
+            // backgroundColor: "#f1f1f1",
           }}
           onClick={() => {
             setIsHistoryPaneOpen(false);

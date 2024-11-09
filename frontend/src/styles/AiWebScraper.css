@@ -1,0 +1,40 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: var(--background-color);
+}
+
+.home-input {
+    background-color: var(--background-color);
+    width: 50vw; 
+    border-radius: 20px; 
+    padding: 0.5vw;
+    border: 1px solid #ccc;
+}
+
+.home-buttons {
+    background-color: var(--button-color);
+}
+
+.home-textarea {
+    background-color: var(--background-color);
+    border: 1px solid #ccc;
+}
+
+.footer-div {
+    background-color: var(--background-color);
+}
+
+.footer-buttons {
+    background-color: var(--background-color);
+}
+
+.panels {
+    background-color: var(--background-color);
+}
+
+.panels-button {
+    background-color: var(--background-color);
+}

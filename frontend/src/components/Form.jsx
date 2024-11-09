@@ -8,7 +8,6 @@ function Form({ route, method }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  // TODO: Implement loading state
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const name = method === "login" ? "Login" : "Register";
@@ -28,7 +27,7 @@ function Form({ route, method }) {
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
         localStorage.setItem("current_username", username);
-        localStorage.setItem("theme", getSystemTheme());
+        // localStorage.setItem("theme", localStorage.getItem("theme") || "light");
 
         console.log(localStorage.getItem("theme"));
         navigate("/");
@@ -45,10 +44,10 @@ function Form({ route, method }) {
   return (
     <form onSubmit={handleSubmit} className="form-container">
       <h1
-        className="text-3xl font-bold underline text-blue-600"
+        className="text-3xl font-bold underline"
         style={{ textAlign: "center", padding: "5vh" }}
       >
-        Login
+        {method === "login" ? "Login" : "Register"}
       </h1>
       <input
         className="form-input"
