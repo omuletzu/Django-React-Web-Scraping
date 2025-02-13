@@ -1,4 +1,4 @@
-# Django-React-Web-Scraping
+# AI Web Scraper
 
 - This project is a web platform that allows users to create an account and perform AI-assisted web scraping.
 
